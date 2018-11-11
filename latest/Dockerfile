@@ -1,8 +1,6 @@
 # Plesk the latest available version container
 
-FROM ubuntu:14.04
-
-LABEL maintainer="plesk-dev-leads@plesk.com"
+FROM ubuntu:18.04
 
 ARG LICENSE
 
