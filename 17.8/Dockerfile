@@ -23,29 +23,18 @@ RUN apt-get update \
         --install-component webservers \
         --install-component nginx \
         --install-component mysqlgroup \
-        --install-component php5.6 \
         --install-component php7.2 \
-        --install-component l10n \
-        --install-component heavy-metal-skin \
-        --install-component git \
-        --install-component passenger \
-        --install-component ruby \
-        --install-component nodejs \
-        --install-component wp-toolkit \
     && plesk bin init_conf --init \
         -email changeme@example.com \
         -passwd changeme \
         -hostname-not-required \
-    && plesk bin license -i $LICENSE \
     && plesk bin settings --set admin_info_not_required=true \
     && plesk bin poweruser --off \
-    && plesk bin extension --install-url https://github.com/plesk/ext-default-login/releases/download/1.0-1/default-login-1.0-1.zip \
     && plesk bin cloning -u -prepare-public-image true -reset-license false -reset-init-conf false -skip-update true \
     && plesk bin ipmanage --auto-remap-ip-addresses true \
     && echo DOCKER > /usr/local/psa/var/cloud_id \
     && touch /root/set_admin_password \
     && apt-get clean \
-    && rm -rf /root/ai /root/parallels
 
 ADD run.sh /run.sh
 CMD /run.sh
