@@ -16,7 +16,6 @@ RUN echo $TZ > /etc/timezone && \
 RUN sed -i -e 's/exit.*/exit 0/g' /usr/sbin/policy-rc.d
 
 RUN apt-get install -y openssh-server
-RUN mkdir /var/run/sshd
 
 RUN echo 'root:changeme' |chpasswd
 
