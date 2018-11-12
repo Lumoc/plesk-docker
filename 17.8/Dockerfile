@@ -15,6 +15,14 @@ RUN echo $TZ > /etc/timezone && \
 # allow services to start
 RUN sed -i -e 's/exit.*/exit 0/g' /usr/sbin/policy-rc.d
 
+RUN apt-get install -y openssh-server
+RUN mkdir /var/run/sshd
+
+RUN echo 'root:root' |chpasswd
+
+RUN sed -ri 's/^#?PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config
+RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
+
 RUN apt-get update \
     && apt-get install -y wget apt-utils libicu-dev \
     && apt-get upgrade -y \
