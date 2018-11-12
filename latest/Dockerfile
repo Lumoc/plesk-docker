@@ -2,7 +2,6 @@
 
 FROM ubuntu:18.04
 
-ARG LICENSE
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV PLESK_DISABLE_HOSTNAME_CHECKING 1
@@ -11,8 +10,8 @@ ENV PLESK_DISABLE_HOSTNAME_CHECKING 1
 RUN sed -i -e 's/exit.*/exit 0/g' /usr/sbin/policy-rc.d
 
 RUN apt-get update \
-    && apt-get install -y wget \
-    && wget -q -O /root/ai http://autoinstall.plesk.com/plesk-installer \
+    && apt-get install -y wget
+RUN wget -q -O /root/ai http://autoinstall.plesk.com/plesk-installer \
     && bash /root/ai \
         --all-versions \
         --select-product-id=plesk \
@@ -39,10 +38,7 @@ RUN apt-get update \
         -email changeme@example.com \
         -passwd changeme \
         -hostname-not-required \
-    && plesk bin license -i $LICENSE \
     && plesk bin settings --set admin_info_not_required=true \
-    && plesk bin poweruser --off \
-    && plesk bin extension --install-url https://github.com/plesk/ext-default-login/releases/download/1.0-1/default-login-1.0-1.zip \
     && plesk bin cloning -u -prepare-public-image true -reset-license false -reset-init-conf false -skip-update true \
     && plesk bin ipmanage --auto-remap-ip-addresses true \
     && echo DOCKER > /usr/local/psa/var/cloud_id \
