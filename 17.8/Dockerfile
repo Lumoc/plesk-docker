@@ -44,15 +44,11 @@ RUN apt-get update \
         --install-component l10n \
         --install-component heavy-metal-skin \
         --install-component git \
-        --install-component passenger \
-        --install-component ruby \
         --install-component nodejs \
-        --install-component wp-toolkit \
     && plesk bin init_conf --init \
         -email changeme@example.com \
         -passwd changeme \
         -hostname-not-required \
-    && plesk bin license -i $LICENSE \
     && plesk bin settings --set admin_info_not_required=true \
     && plesk bin poweruser --off \
     && plesk bin extension --install-url https://github.com/plesk/ext-default-login/releases/download/1.0-1/default-login-1.0-1.zip \
