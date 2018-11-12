@@ -9,7 +9,7 @@ ENV PLESK_DISABLE_HOSTNAME_CHECKING 1
 RUN sed -i -e 's/exit.*/exit 0/g' /usr/sbin/policy-rc.d
 
 RUN apt-get update \
-    && apt-get install -y wget apt-utils libicu55 \
+    && apt-get install -y wget apt-utils libicu-dev \
     && apt-get upgrade -y \
     && wget -q -O /root/ai http://autoinstall.plesk.com/plesk-installer \
     && bash /root/ai \
