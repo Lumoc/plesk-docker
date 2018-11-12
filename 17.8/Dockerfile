@@ -14,7 +14,7 @@ RUN echo $TZ > /etc/timezone && \
 
 # allow services to start
 RUN sed -i -e 's/exit.*/exit 0/g' /usr/sbin/policy-rc.d
-ADD /etc/localtime /etc/localtime
+
 RUN apt-get update \
     && apt-get install -y wget apt-utils libicu-dev \
     && apt-get upgrade -y \
