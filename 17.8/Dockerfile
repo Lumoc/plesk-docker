@@ -1,6 +1,6 @@
 # Plesk the latest available version container
 
-FROM ubuntu:18.04
+FROM ubuntu:16.04
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV PLESK_DISABLE_HOSTNAME_CHECKING 1
